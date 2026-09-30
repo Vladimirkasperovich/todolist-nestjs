@@ -1,0 +1,22 @@
+
+
+services:
+  postgres:
+    container_name: postgres-todolist
+    image: postgres:17
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - todolist
+
+volumes:
+  postgres_data:
+
+networks:
+  todolist:
