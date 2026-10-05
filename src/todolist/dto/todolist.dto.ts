@@ -19,7 +19,7 @@ export class TodolistDto {
     isArray: true,
     description: 'Tasks belonging to this todolist',
   })
-  tasks?: TaskDto[];
+  tasks: TaskDto[];
 
   @ApiProperty({
     example: '2026-09-30T10:00:00.000Z',

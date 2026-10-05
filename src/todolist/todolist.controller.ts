@@ -5,6 +5,7 @@ import {
   Get,
   HttpCode,
   Param,
+  ParseUUIDPipe,
   Patch,
   Post,
 } from '@nestjs/common';
@@ -54,7 +55,7 @@ export class TodolistController {
   @ApiNotFoundResponse({
     description: 'Todolist not found',
   })
-  findById(@Param('id') id: string): Promise<TodolistDto> {
+  findById(@Param('id', ParseUUIDPipe) id: string): Promise<TodolistDto> {
     return this.todolistService.findById(id);
   }
 

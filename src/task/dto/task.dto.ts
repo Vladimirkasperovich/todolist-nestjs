@@ -18,9 +18,8 @@ export class TaskDto {
     description: 'ID of the todolist that the task belongs to',
     example: '550e8400-e29b-41d4-a716-446655440000',
     format: 'uuid',
-    nullable: true,
   })
-  todolistId: string | null;
+  todolistId: string;
 
   @ApiProperty({
     description: 'Task creation date',

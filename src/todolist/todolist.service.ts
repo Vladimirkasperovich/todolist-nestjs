@@ -29,17 +29,23 @@ export class TodolistService {
   }
 
   async create(dto: CreateTodolistDto): Promise<TodolistDto> {
-    return this.prismaRepository.todolist.create({ data: dto });
+    return this.prismaRepository.todolist.create({
+      data: dto,
+      include: { tasks: true },
+    });
   }
 
   async updateTitle(
     id: string,
     dto: UpdateTodolistTitleDto,
-  ): Promise<UpdateTodolistTitleDto> {
+  ): Promise<TodolistDto> {
     await this.findById(id);
     return this.prismaRepository.todolist.update({
       where: { id },
       data: dto,
+      include: {
+        tasks: true,
+      },
     });
   }
   async delete(id: string): Promise<void> {
