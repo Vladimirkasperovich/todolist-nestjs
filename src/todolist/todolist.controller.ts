@@ -84,7 +84,7 @@ export class TodolistController {
   updateTitle(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() dto: UpdateTodolistTitleDto,
-  ): Promise<UpdateTodolistTitleDto> {
+  ): Promise<TodolistDto> {
     return this.todolistService.updateTitle(id, dto);
   }
 
