@@ -9,6 +9,13 @@ export class TaskService {
   constructor(private readonly prismaService: PrismaService) {}
 
   async create(dto: CreateTaskDto): Promise<TaskDto> {
+    const todolist = await this.prismaService.todolist.findUnique({
+      where: { id: dto.todolistId },
+    });
+
+    if (!todolist) {
+      throw new NotFoundException('Todolist not found');
+    }
     return this.prismaService.task.create({ data: dto });
   }
 
