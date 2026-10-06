@@ -82,7 +82,7 @@ export class TodolistController {
     description: 'Todolist not found',
   })
   updateTitle(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() dto: UpdateTodolistTitleDto,
   ): Promise<UpdateTodolistTitleDto> {
     return this.todolistService.updateTitle(id, dto);
@@ -97,7 +97,7 @@ export class TodolistController {
   @ApiNotFoundResponse({
     description: 'Todolist not found',
   })
-  delete(@Param('id') id: string): Promise<void> {
+  delete(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
     return this.todolistService.delete(id);
   }
 }

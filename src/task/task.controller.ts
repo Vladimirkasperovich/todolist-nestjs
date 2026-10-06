@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseUUIDPipe,
   Patch,
   Post,
 } from '@nestjs/common';
@@ -48,7 +49,7 @@ export class TaskController {
   @ApiNotFoundResponse({
     description: 'Task not found',
   })
-  findById(@Param('id') id: string): Promise<TaskDto> {
+  findById(@Param('id', ParseUUIDPipe) id: string): Promise<TaskDto> {
     return this.taskService.findById(id);
   }
 
@@ -65,7 +66,7 @@ export class TaskController {
     description: 'Task not found',
   })
   update(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() dto: UpdateTaskDto,
   ): Promise<TaskDto> {
     return this.taskService.update(id, dto);
@@ -79,7 +80,7 @@ export class TaskController {
   @ApiNotFoundResponse({
     description: 'Task not found',
   })
-  delete(@Param('id') id: string): Promise<void> {
+  delete(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
     return this.taskService.delete(id);
   }
 }
